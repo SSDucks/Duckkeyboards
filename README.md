@@ -1,2 +1,2 @@
 # Duckkeyboards
-A website to seel kayboards
+A website to sell kayboards
