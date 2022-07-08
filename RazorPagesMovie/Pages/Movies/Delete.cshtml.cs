@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace RazorPagesMovie.Pages.Movies
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;

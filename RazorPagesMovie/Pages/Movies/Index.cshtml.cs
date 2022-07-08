@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RazorPagesMovie.Pages.Movies
 {
+    [Authorize(Roles = "Admin, Users")]
     public class IndexModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
