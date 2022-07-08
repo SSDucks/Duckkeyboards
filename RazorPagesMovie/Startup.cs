@@ -33,10 +33,11 @@ namespace RazorPagesMovie
             services.AddDbContext<RazorPagesMovieContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
 
-            services.AddIdentity<ApplicationUser, Microsoft.AspNetCore.Identity.IdentityRole>()
-            .AddDefaultUI()
-            .AddEntityFrameworkStores<RazorPagesMovieContext>()
-            .AddDefaultTokenProviders();
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+         .AddDefaultUI()
+         .AddEntityFrameworkStores<RazorPagesMovieContext>()
+         .AddDefaultTokenProviders();
+
             services.AddMvc()
             .AddRazorPagesOptions(options =>
             {
@@ -71,6 +72,23 @@ namespace RazorPagesMovie
                 options.Conventions.AuthorizeAreaPage("Identity", "/Manage/Accounts");
             });
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 5;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredUniqueChars = 1;
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 1;
+                options.Lockout.AllowedForNewUsers = true;
+                // User settings
+                options.User.RequireUniqueEmail = true;
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -91,7 +109,7 @@ namespace RazorPagesMovie
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
