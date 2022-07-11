@@ -9,11 +9,13 @@ namespace RazorPagesMovie
     {
         public Client client { get; set; }
         public List<Item> itemList { get; set; }
+        public int cartID { get; set; }
         public ShoppingCart() { }
-        public ShoppingCart(Client Client, List<Item> ItemList)
+        public ShoppingCart(Client Client, List<Item> ItemList, int CartID)
         {
             client = Client;
             itemList = ItemList;
+            cartID = CartID;
         }
         public double CalculateTotal(List<Item> itemList)
         {

@@ -12,6 +12,7 @@ namespace RazorPagesMovie
         public Client myProperty { get; set; }
         public int rating { get; set; }
         public DateTime dateTimePosted { get; set; } = DateTime.Now; // Default Value set to when Review is created
+        public bool deleteStatus { get; set; } = false; // See if review has been deleted and reviewID is no longer usable. 
         public Review() { }
         public Review(int Rating, string ReviewText, Client Client)
         {
