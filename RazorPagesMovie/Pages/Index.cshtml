@@ -3,8 +3,31 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<link rel="stylesheet" href="/Pages/PageDesign/css/Shared.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    VANTA.NET({
+        el: "#vanta",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0x0,
+        backgroundColor: 0xe8e8e8,
+        points: 12.00,
+        maxDistance: 26.00,
+        spacing: 16.00,
+        showDots: false
+    })
+})
+</script>
 
-<div class="text-center">
+<div class="text-center" id="vanta">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
