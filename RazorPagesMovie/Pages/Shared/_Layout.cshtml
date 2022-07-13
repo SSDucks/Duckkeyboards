@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/Shared.css" />
 </head>
-<body class="min-vh-100">
+<body class="">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -29,6 +29,11 @@
                         <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Movies/Index">Store</a>
                         </li>
+                        @if(@User.IsInRole("Admin")){
+                            <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Movies/Index">Add Items</a>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <partial name="_LoginPartial" />
