@@ -1,8 +1,67 @@
 ﻿#vanta{
-    z-index: 0;
-    position: absolute;
-    left:0;
+    z-index:-1 ;
+    left: 0;
     right: 0;
     width:100%;
-    height:100%
+    height:100%;
+    object-fit:contain;
+    position:absolute;
+    margin:auto;
+}
+
+#welcome{
+    box-sizing: border-box;
+    /*display:block;*/
+    /*top:30%;*/
+    bottom:60%;
+    background-color: white;
+    color:black;
+    font-weight:400;
+    border-radius:1em;
+    padding:5px 10px 5px 10px;
+    max-width:600px;
+    margin:0 auto;
+    font-size:50px;
+    position:absolute;
+    font-weight:bold;
+}
+
+footer{
+    background-color:white;
+}
+#welcomeList {
+    z-index: 1;
+}
+
+ul#welcomeList{
+    margin-top:10px;
+    top:40%;
+    box-sizing:border-box;
+    position:absolute;
+    list-style:none;
+    position:absolute;
+    padding:0 0;
+/*    left:10%;
+    right:10%;*/
+
+}
+ul#welcomeList > li{
+    background-color:white;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    margin:0 10px 10px 10px;
+    padding: 0 15px 5px 15px;
+    font-size:40px;
+    /*font-weight:bold;*/
+    border-radius:1em;
+    text-align:center;
+
+}
+
+.welcomeTitle{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
 }
