@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,7 +10,6 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Movies
 {
-    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
