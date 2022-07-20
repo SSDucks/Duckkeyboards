@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages.Audit
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         [BindProperty]
-        public Movie Movie { get; set; }
+        public AuditRecord AuditRecord { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            Movie = await _context.Movie.FirstOrDefaultAsync(m => m.ID == id);
+            AuditRecord = await _context.AuditRecords.FirstOrDefaultAsync(m => m.Audit_ID == id);
 
-            if (Movie == null)
+            if (AuditRecord == null)
             {
                 return NotFound();
             }
@@ -45,24 +45,12 @@ namespace RazorPagesMovie.Pages.Movies
                 return NotFound();
             }
 
-            Movie = await _context.Movie.FindAsync(id);
+            AuditRecord = await _context.AuditRecords.FindAsync(id);
 
-            if (Movie != null)
+            if (AuditRecord != null)
             {
-                _context.Movie.Remove(Movie);
-                // await _context.SaveChangesAsync();
-                // Once a record is deleted, create an audit record
-                if (await _context.SaveChangesAsync() > 0)
-                {
-                    var auditrecord = new AuditRecord();
-                    auditrecord.AuditActionType = "Delete Movie Record";
-                    auditrecord.DateTimeStamp = DateTime.Now;
-                    auditrecord.KeyMovieFieldID = Movie.ID;
-                    var userID = User.Identity.Name.ToString();
-                    auditrecord.Username = userID;
-                    _context.AuditRecords.Add(auditrecord);
-                    await _context.SaveChangesAsync();
-                }
+                _context.AuditRecords.Remove(AuditRecord);
+                await _context.SaveChangesAsync();
             }
 
             return RedirectToPage("./Index");

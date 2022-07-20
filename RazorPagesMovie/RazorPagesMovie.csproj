@@ -5,10 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Items\**" />
+    <Content Remove="Pages\Items\**" />
+    <EmbeddedResource Remove="Pages\Items\**" />
+    <None Remove="Pages\Items\**" />
+    <TypeScriptCompile Remove="Pages\Items\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\css\Shared.css" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AntiXSS" Version="4.3.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.3.0" />
     <PackageReference Include="JavaScriptEngineSwitcher.V8" Version="3.18.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.25" />
@@ -26,10 +35,6 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="React.AspNet" Version="5.2.12" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Items\" />
   </ItemGroup>
 
 </Project>

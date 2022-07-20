@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RazorPagesMovie.Data;
 
 namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(RazorPagesMovieContext))]
-    partial class RazorPagesMovieContextModelSnapshot : ModelSnapshot
+    [Migration("20220720054729_AddCustomer")]
+    partial class AddCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -231,30 +233,6 @@ namespace RazorPagesMovie.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Models.AuditRecord", b =>
-                {
-                    b.Property<int>("Audit_ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AuditActionType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateTimeStamp")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("KeyMovieFieldID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Username")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Audit_ID");
-
-                    b.ToTable("AuditRecords");
                 });
 
             modelBuilder.Entity("RazorPagesMovie.Models.Customer", b =>
