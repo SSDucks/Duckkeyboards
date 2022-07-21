@@ -5,14 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pages\Items\**" />
-    <Content Remove="Pages\Items\**" />
-    <EmbeddedResource Remove="Pages\Items\**" />
-    <None Remove="Pages\Items\**" />
-    <TypeScriptCompile Remove="Pages\Items\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\css\Shared.css" />
   </ItemGroup>
 

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using RazorPagesMovie;
 
 namespace RazorPagesMovie.Data
 {
@@ -26,6 +27,7 @@ namespace RazorPagesMovie.Data
         public DbSet<RazorPagesMovie.Models.Movie> Movie { get; set; }
         public DbSet<RazorPagesMovie.Models.Customer> Customers { get; set; }
         public DbSet<RazorPagesMovie.Models.AuditRecord> AuditRecords { get; set; }
+        public DbSet<RazorPagesMovie.Item> Item { get; set; }
 
 
     }

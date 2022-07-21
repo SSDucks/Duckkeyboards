@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace RazorPagesMovie
 {
@@ -10,6 +13,7 @@ namespace RazorPagesMovie
         public int itemID { get; set; }
         public string itemName { get; set; }
         public double weight { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
         public double price { get; set; }
         public string colour { get; set; }
         public string itemImage { get; set; }
