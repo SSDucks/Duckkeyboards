@@ -36,7 +36,7 @@ namespace RazorPagesMovie.Pages.Items
                 return Page();
             }
 
-            var file = Path
+            //var file = Path
             _context.Item.Add(Item);
             await _context.SaveChangesAsync();
 
