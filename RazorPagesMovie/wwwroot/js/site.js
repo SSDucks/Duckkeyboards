@@ -16,4 +16,4 @@ function readURL(input) {
 
 $("#inputFile").change(function () {
     readURL(this);
-}); 
+});
