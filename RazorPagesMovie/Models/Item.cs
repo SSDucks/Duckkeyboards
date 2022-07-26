@@ -26,6 +26,8 @@ namespace RazorPagesMovie
             price = Price;
             colour = Colour;
             itemImage = ItemImage;
+
+            // aa
         }
     }
 }
