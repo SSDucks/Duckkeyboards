@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RazorPagesMovie.Data;
 
 namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(RazorPagesMovieContext))]
-    partial class RazorPagesMovieContextModelSnapshot : ModelSnapshot
+    [Migration("20220720071917_AddAudit")]
+    partial class AddAudit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,33 +123,6 @@ namespace RazorPagesMovie.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Item", b =>
-                {
-                    b.Property<int>("itemID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("colour")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("itemImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("itemName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<double>("weight")
-                        .HasColumnType("float");
-
-                    b.HasKey("itemID");
-
-                    b.ToTable("Item");
                 });
 
             modelBuilder.Entity("RazorPagesMovie.Models.ApplicationRole", b =>
