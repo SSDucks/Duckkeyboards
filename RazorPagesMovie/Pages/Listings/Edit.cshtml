@@ -1,0 +1,65 @@
+﻿@page
+@model RazorPagesMovie.Pages.Listings.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Listing</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Listing.listingID" />
+            <div class="form-group">
+                <label asp-for="Listing.itemName" class="control-label"></label>
+                <input asp-for="Listing.itemName" class="form-control" />
+                <span asp-validation-for="Listing.itemName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Listing.weight" class="control-label"></label>
+                <input asp-for="Listing.weight" class="form-control" />
+                <span asp-validation-for="Listing.weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Listing.price" class="control-label"></label>
+                <input asp-for="Listing.price" class="form-control" />
+                <span asp-validation-for="Listing.price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Listing.colour" class="control-label"></label>
+                <input asp-for="Listing.colour" class="form-control" />
+                <span asp-validation-for="Listing.colour" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Listing.imageName" class="control-label"></label>
+                <input asp-for="Listing.imageName" class="form-control" />
+                <span asp-validation-for="Listing.imageName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Listing.itemType" class="control-label"></label>
+                <input asp-for="Listing.itemType" class="form-control" />
+                <span asp-validation-for="Listing.itemType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Listing.content" class="control-label"></label>
+                <input asp-for="Listing.content" class="form-control" />
+                <span asp-validation-for="Listing.content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

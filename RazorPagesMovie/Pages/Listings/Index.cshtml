@@ -1,0 +1,72 @@
+﻿@page
+@model RazorPagesMovie.Pages.Listings.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].itemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].colour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].imageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].itemType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].content)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Listing) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.colour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imageName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.itemType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.content)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.listingID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.listingID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.listingID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

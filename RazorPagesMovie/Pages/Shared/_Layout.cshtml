@@ -27,11 +27,11 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Movies/Index">Store</a>
+                        <a class="nav-link text-dark" asp-area="" asp-page="/Listings/Index">Store</a>
                         </li>
                         @if(@User.IsInRole("Admin")){
                             <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Movies/Index">Add Items</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Listings/Create">Add Items</a>
                             </li>
                         }
                     </ul>

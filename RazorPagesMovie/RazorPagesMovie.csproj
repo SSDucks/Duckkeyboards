@@ -29,4 +29,8 @@
     <PackageReference Include="React.AspNet" Version="5.2.12" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\uploadFiles\" />
+  </ItemGroup>
+
 </Project>
