@@ -324,8 +324,8 @@ namespace RazorPagesMovie.Migrations
                     b.Property<string>("colour")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("content")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("content")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("imageName")
                         .HasColumnType("nvarchar(max)");

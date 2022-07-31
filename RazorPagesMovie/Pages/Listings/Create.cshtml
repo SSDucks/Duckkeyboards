@@ -49,10 +49,10 @@
                 <span asp-validation-for="Listing.content" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-                <label asp-for="FileUpload.FormFile" class="control-label"></label>
-                 <input asp-for="FileUpload.FormFile" class="form-control" type="file" id="inputFile"/>
+                <label asp-for="Photo" class="control-label"></label>
+                 <input asp-for="Photo" class="form-control" type="file" id="inputFile"/>
                 <img id="image_upload_preview" src="" alt="" style="height: 200px;" />
-                <span asp-validation-for="FileUpload.FormFile" class="text-danger"></span>
+                <span asp-validation-for="Photo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

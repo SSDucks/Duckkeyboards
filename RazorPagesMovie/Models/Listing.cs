@@ -18,10 +18,10 @@ namespace RazorPagesMovie.Models
         public string colour { get; set; }
         public string imageName { get; set; }
         public string itemType { get; set; }
-        public byte[] content { get; set; }
+        public string content { get; set; }
 
         public Listing() { }
-        public Listing(int ListingID, string ItemName, double Weight, double Price, string Colour, string ImageName, string itemType, byte[] content)
+        public Listing(int ListingID, string ItemName, double Weight, double Price, string Colour, string ImageName, string itemType, string content)
         {
             listingID = ListingID;
             itemName = ItemName;
