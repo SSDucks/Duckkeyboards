@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20220731134022_AddListings.cs" />
+    <Compile Remove="Migrations\20220731134022_AddListings.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\css\Shared.css" />
   </ItemGroup>
 

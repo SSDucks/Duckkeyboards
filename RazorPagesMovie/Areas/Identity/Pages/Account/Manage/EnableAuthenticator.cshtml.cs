@@ -149,7 +149,7 @@ namespace RazorPagesMovie.Areas.Identity.Pages.Account.Manage
         {
             return string.Format(
                 AuthenticatorUriFormat,
-                _urlEncoder.Encode("RazorPagesMovie"),
+                _urlEncoder.Encode("Duckkeyboards"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }
