@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -28,11 +29,13 @@ namespace RazorPagesMovie.Pages.Listings
         public IList<Listing> Listing { get;set; }
 
         [BindProperty]
-        public IFormFile photo { get; set; }
+        public IFormFile Photo { get; set; }
 
         public async Task OnGetAsync()
         {
             Listing = await _context.Listings.ToListAsync();
         }
+
+
     }
 }

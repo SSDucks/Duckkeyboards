@@ -3,8 +3,7 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Models.Listing listing = new Models.Listing();
-    var photoPath = "~/images/" + (listing.price);
+    var photoPath = "~/images/" + (Model.Listing.content);
 }
 
 <h1>Edit</h1>
@@ -13,9 +12,10 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Listing.listingID" />
+            <input type="hidden" asp-for="Listing.content" />
             <div class="form-group">
                 <label asp-for="Listing.itemName" class="control-label"></label>
                 <input asp-for="Listing.itemName" class="form-control" />
@@ -46,10 +46,20 @@
                 <input asp-for="Listing.itemType" class="form-control" />
                 <span asp-validation-for="Listing.itemType" class="text-danger"></span>
             </div>
-            <div class="form-group">
+@*            <div class="form-group">
                 <label asp-for="Listing.content" class="control-label"></label>
                 <input asp-for="Listing.content" class="form-control" />
                 <span asp-validation-for="Listing.content" class="text-danger"></span>
+            </div>*@
+            @{
+                System.Diagnostics.Debug.WriteLine("AAAAAAAA" + photoPath);
+                var path = Url.Content(photoPath);
+            }
+               <div class="form-group">
+                <label asp-for="Photo" class="control-label"></label>
+                 <input asp-for="Photo" class="form-control" type="file" id="inputFile"/>
+                <img id="image_upload_preview" src=@path alt="" style="height: 200px;" />
+                <span asp-validation-for="Photo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

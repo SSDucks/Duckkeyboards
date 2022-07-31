@@ -41,9 +41,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model.Listing) {
-            @inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment env;
             var path = Url.Content("~/images/" + item.content);
-            @*path = env.WebRootFileProvider.GetFileInfo*@
             <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.itemName)

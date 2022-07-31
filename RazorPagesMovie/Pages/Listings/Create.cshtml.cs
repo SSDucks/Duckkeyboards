@@ -48,6 +48,7 @@ namespace RazorPagesMovie.Pages.Listings
 
             if (Photo != null)
             {
+                System.Diagnostics.Debug.WriteLine("BBBB" + ProcessUploadedFile());
                 Listing.content = ProcessUploadedFile();
             }
 
