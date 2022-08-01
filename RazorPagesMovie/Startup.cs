@@ -13,6 +13,7 @@ using RazorPagesMovie.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using RazorPagesMovie.Models;
+using AspNetCore.ReCaptcha;
 
 namespace RazorPagesMovie
 {
@@ -29,6 +30,7 @@ namespace RazorPagesMovie
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddReCaptcha(Configuration.GetSection("ReCaptcha"));
 
             services.AddDbContext<RazorPagesMovieContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("RazorPagesMovieContext")));
