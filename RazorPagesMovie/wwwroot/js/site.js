@@ -17,3 +17,8 @@ function readURL(input) {
 $("#inputFile").change(function () {
     readURL(this);
 });
+
+
+function buyButton() {
+    location.href = "Listings/Purchase";
+}

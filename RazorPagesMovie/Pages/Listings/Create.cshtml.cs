@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,8 +19,10 @@ namespace RazorPagesMovie.Pages.Listings
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
         private readonly IWebHostEnvironment _hostenvironment;
 
-        public CreateModel(RazorPagesMovie.Data.RazorPagesMovieContext context)
+        public CreateModel(RazorPagesMovie.Data.RazorPagesMovieContext context
+            , IWebHostEnvironment webHostEnvironment)
         {
+            this._hostenvironment = webHostEnvironment; 
             _context = context;
         }
 
@@ -31,6 +35,8 @@ namespace RazorPagesMovie.Pages.Listings
         public Listing Listing { get; set; }
         [BindProperty]
         public FileViewModel FileUpload { get; set; }
+        [BindProperty]
+        public IFormFile Photo { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -41,40 +47,62 @@ namespace RazorPagesMovie.Pages.Listings
                 return Page();
             }
 
-            //FileUpload file to folder
-            if(FileUpload.FormFile.Length > 0)
+            if (Photo != null)
             {
-                if (string.IsNullOrWhiteSpace(_hostenvironment.WebRootPath)){
-                    _hostenvironment.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-                }
-                using (var stream = new FileStream(Path.Combine(_hostenvironment.WebRootPath, "uploadFiles", FileUpload.FormFile.FileName), FileMode.Create))
-                {
-                    await FileUpload.FormFile.CopyToAsync(stream);
-                }
-
+                System.Diagnostics.Debug.WriteLine("BBBB" + ProcessUploadedFile());
+                Listing.content = ProcessUploadedFile();
             }
 
-            // Save image to database
-            using (var memoryStream = new MemoryStream()){
-                await FileUpload.FormFile.CopyToAsync(memoryStream);
 
-                // Upload the file if less than 2 MB
-                if(memoryStream.Length < 2097152)
-                {
-                    Listing.imageName = FileUpload.FormFile.FileName;
-                    Listing.content = memoryStream.ToArray();
 
-                    _context.Listings.Add(Listing);
-                    await _context.SaveChangesAsync();
-        
-                    return RedirectToPage("./Index");
-                }
-                else
-                {
-                    ModelState.AddModelError("File", "File should be less than 2 MB");
-                }
-            }
+            _context.Listings.Add(Listing);
+            await _context.SaveChangesAsync();
+            ////await _context.SaveChangesAsync();
+            //// Created audit log when listing is created
+            //if (await _context.SaveChangesAsync() > 0)
+            //{
+            //    // create auditrecord object
+            //    var auditrecord = new AuditRecord();
+            //    auditrecord.AuditActionType = "Add Listing Record";
+            //    auditrecord.DateTimeStamp = DateTime.Now;
+            //    auditrecord.KeyListingFieldListingID = Listing.listingID;
+            //    // Get current logged-in user
+            //    var userId = User.Identity.Name.ToString();
+            //    auditrecord.Username = userId;
+            //    auditrecord.PortalArea = "Create Listings Page";
+            //    //var userRole = ((ClaimsIdentity)User.Identity).Claims
+            //    //    .Where(c => c.Type == ClaimTypes.Role)
+            //    //    .Select(c => c.Value).ToList();
+            //    auditrecord.UserRole = "aa";
+
+            //    _context.AuditRecords.Add(auditrecord);
+            //    await _context.SaveChangesAsync();
+
+            //    _context.Listings.Add(Listing);
+            //    await _context.SaveChangesAsync();
+
+            //}
             return RedirectToPage("./Index");
         }
+        private string ProcessUploadedFile()
+        {
+            string uniqueFileName = null;
+            if (Photo != null)
+            {
+                if (string.IsNullOrWhiteSpace(_hostenvironment.WebRootPath))
+                {
+                    _hostenvironment.WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                }
+                string uploadsFolder = Path.Combine(_hostenvironment.WebRootPath, "images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + Photo.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using(var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    Photo.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
+        }
     }
+
 }

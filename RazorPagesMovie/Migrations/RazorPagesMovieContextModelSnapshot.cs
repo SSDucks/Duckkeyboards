@@ -123,33 +123,6 @@ namespace RazorPagesMovie.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("RazorPagesMovie.Item", b =>
-                {
-                    b.Property<int>("itemID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("colour")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("itemImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("itemName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<double>("weight")
-                        .HasColumnType("float");
-
-                    b.HasKey("itemID");
-
-                    b.ToTable("Item");
-                });
-
             modelBuilder.Entity("RazorPagesMovie.Models.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
@@ -273,8 +246,14 @@ namespace RazorPagesMovie.Migrations
                     b.Property<DateTime>("DateTimeStamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("KeyMovieFieldID")
+                    b.Property<int>("KeyListingFieldListingID")
                         .HasColumnType("int");
+
+                    b.Property<string>("PortalArea")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserRole")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
@@ -282,36 +261,6 @@ namespace RazorPagesMovie.Migrations
                     b.HasKey("Audit_ID");
 
                     b.ToTable("AuditRecords");
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Models.Customer", b =>
-                {
-                    b.Property<int>("CustomerID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Comment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNum")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CustomerID");
-
-                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("RazorPagesMovie.Models.Listing", b =>
@@ -324,13 +273,16 @@ namespace RazorPagesMovie.Migrations
                     b.Property<string>("colour")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("content")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("imageName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("itemName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("itemType")

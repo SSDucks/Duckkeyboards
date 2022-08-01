@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    var path = Url.Content("~/images/" + Model.Listing.content);
 }
 
 <h1>Details</h1>
@@ -51,7 +52,8 @@
             @Html.DisplayNameFor(model => model.Listing.content)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Listing.content)
+            <img src="@Html.DisplayFor(model => path)" style="height:200px" />
+            @*@Html.DisplayFor(model => model.Listing.content)*@
         </dd>
     </dl>
 </div>

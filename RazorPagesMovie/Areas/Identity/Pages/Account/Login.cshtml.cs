@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using RazorPagesMovie.Models;
+using System.Security.Claims;
 
 namespace RazorPagesMovie.Areas.Identity.Pages.Account
 {
@@ -43,6 +44,7 @@ namespace RazorPagesMovie.Areas.Identity.Pages.Account
 
         [TempData]
         public string ErrorMessage { get; set; }
+
 
         public class InputModel
         {
@@ -97,9 +99,29 @@ namespace RazorPagesMovie.Areas.Identity.Pages.Account
                     auditrecord.AuditActionType = "Failed Login"
                    ;
                     auditrecord.DateTimeStamp = DateTime.Now;
-                    auditrecord.KeyMovieFieldID = 999;
+                    auditrecord.KeyListingFieldListingID = 999;
                     // 999– dummy record
-                     auditrecord.Username = Input.Email;
+                    auditrecord.Username = Input.Email;
+                    // Set this to hardcoded Login page since failed login
+                    auditrecord.PortalArea = "Login";
+                    //var userRole = ((ClaimsIdentity)User.Identity).Claims
+                    //    .Where(c => c.Type == ClaimTypes.Role)
+                    //    .Select(c => c.Value).ToList();
+                    var roles = getAllRoles();
+                    var userRoles = new List<string>();
+                    foreach(string role in roles)
+                    {
+                        System.Diagnostics.Debug.WriteLine("BBB" + role);
+                        if (User.IsInRole(role))
+                        {
+                            System.Diagnostics.Debug.WriteLine("AAA" + role);
+                            userRoles.Add(role);
+                        }
+                    }
+
+                    auditrecord.UserRole = String.Join(",", userRoles);
+                    // Last ditch check through all the roles and just
+                    // add to list lmao
                     // save the email used for the failed login
                     _context.AuditRecords.Add(auditrecord);
                     await _context.SaveChangesAsync();
@@ -123,6 +145,19 @@ namespace RazorPagesMovie.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+
+        public List<string> getAllRoles()
+        {
+            var roles = new List<string>();
+            roles.Add("Auditor");
+            roles.Add("Role Administrator");
+            roles.Add("Moderator");
+            roles.Add("Shopkeeper");
+            roles.Add("Admin");
+
+            return roles;
         }
     }
 }

@@ -45,7 +45,7 @@ namespace RazorPagesMovie.Pages.Movies
                 var auditrecord = new AuditRecord();
                 auditrecord.AuditActionType = "Add Movie Record";
                 auditrecord.DateTimeStamp = DateTime.Now;
-                auditrecord.KeyMovieFieldID = Movie.ID;
+                auditrecord.KeyListingFieldListingID = Movie.ID;
                 // Get current logged-in user
                 var userID = User.Identity.Name.ToString();
                 auditrecord.Username = userID;

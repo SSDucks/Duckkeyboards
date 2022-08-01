@@ -54,12 +54,6 @@ namespace RazorPagesMovie.Models
                     }
                 );
                 context.SaveChanges();
-
-
-                // Add own items here reference from movies above
-                context.Item.AddRange(
-
-                    );
             }
         }
     }

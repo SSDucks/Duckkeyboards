@@ -57,7 +57,7 @@ namespace RazorPagesMovie.Pages.Movies
                     var auditrecord = new AuditRecord();
                     auditrecord.AuditActionType = "Delete Movie Record";
                     auditrecord.DateTimeStamp = DateTime.Now;
-                    auditrecord.KeyMovieFieldID = Movie.ID;
+                    auditrecord.KeyListingFieldListingID = Movie.ID;
                     var userID = User.Identity.Name.ToString();
                     auditrecord.Username = userID;
                     _context.AuditRecords.Add(auditrecord);

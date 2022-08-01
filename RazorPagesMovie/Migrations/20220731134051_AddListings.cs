@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RazorPagesMovie.Migrations
 {
@@ -13,13 +12,13 @@ namespace RazorPagesMovie.Migrations
                 {
                     listingID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    itemName = table.Column<string>(nullable: true),
+                    itemName = table.Column<string>(nullable: false),
                     weight = table.Column<double>(nullable: false),
                     price = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
                     colour = table.Column<string>(nullable: true),
-                    imageName = table.Column<string>(nullable: true),
+                    imageName = table.Column<string>(nullable: false),
                     itemType = table.Column<string>(nullable: true),
-                    content = table.Column<byte[]>(nullable: true)
+                    content = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {

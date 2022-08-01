@@ -10,7 +10,7 @@ using RazorPagesMovie.Data;
 namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(RazorPagesMovieContext))]
-    [Migration("20220728092137_AddListings")]
+    [Migration("20220731134051_AddListings")]
     partial class AddListings
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -326,13 +326,16 @@ namespace RazorPagesMovie.Migrations
                     b.Property<string>("colour")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("content")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("imageName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("itemName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("itemType")

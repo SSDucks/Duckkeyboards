@@ -3,6 +3,8 @@
 
 @{
     ViewData["Title"] = "Index";
+    Models.Listing listing = new Models.Listing();
+    var photoPath = "~/images/" + (listing.content);
 }
 
 <h1>Index</h1>
@@ -39,7 +41,8 @@
     </thead>
     <tbody>
 @foreach (var item in Model.Listing) {
-        <tr>
+            var path = Url.Content("~/images/" + item.content);
+            <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.itemName)
             </td>
@@ -59,7 +62,14 @@
                 @Html.DisplayFor(modelItem => item.itemType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.content)
+                <img src="
+                @Html.DisplayFor(modelItem => path)
+                " style="height: 200px;">
+            </td>
+            <td>
+                <button class="button-38" role="button" onclick="buyButton()">
+                    Buy
+                </button>
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.listingID">Edit</a> |

@@ -30,9 +30,19 @@
                 <span asp-validation-for="AuditRecord.DateTimeStamp" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AuditRecord.KeyMovieFieldID" class="control-label"></label>
-                <input asp-for="AuditRecord.KeyMovieFieldID" class="form-control" />
-                <span asp-validation-for="AuditRecord.KeyMovieFieldID" class="text-danger"></span>
+                <label asp-for="AuditRecord.KeyListingFieldListingID" class="control-label"></label>
+                <input asp-for="AuditRecord.KeyListingFieldListingID" class="form-control" />
+                <span asp-validation-for="AuditRecord.KeyListingFieldListingID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuditRecord.UserRole" class="control-label"></label>
+                <input asp-for="AuditRecord.UserRole" class="form-control" />
+                <span asp-validation-for="AuditRecord.UserRole" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuditRecord.PortalArea" class="control-label"></label>
+                <input asp-for="AuditRecord.PortalArea" class="form-control" />
+                <span asp-validation-for="AuditRecord.PortalArea" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
