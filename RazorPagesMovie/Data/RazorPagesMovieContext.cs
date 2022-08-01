@@ -25,10 +25,8 @@ namespace RazorPagesMovie.Data
         }
 
         public DbSet<RazorPagesMovie.Models.Movie> Movie { get; set; }
-        public DbSet<RazorPagesMovie.Models.Customer> Customers { get; set; }
-        public DbSet<RazorPagesMovie.Models.AuditRecord> AuditRecords { get; set; }
-        public DbSet<RazorPagesMovie.Item> Item { get; set; }
         public DbSet<RazorPagesMovie.Models.Listing> Listings { get; set; }
+        public DbSet<RazorPagesMovie.Models.AuditRecord> AuditRecords { get; set; }
         //public dbset reviews
 
 

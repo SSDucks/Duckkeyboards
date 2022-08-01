@@ -10,8 +10,8 @@ using RazorPagesMovie.Data;
 namespace RazorPagesMovie.Migrations
 {
     [DbContext(typeof(RazorPagesMovieContext))]
-    [Migration("20220726152248_AddItems")]
-    partial class AddItems
+    [Migration("20220801021833_AddAudit")]
+    partial class AddAudit
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -123,33 +123,6 @@ namespace RazorPagesMovie.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("RazorPagesMovie.Item", b =>
-                {
-                    b.Property<int>("itemID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("colour")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("itemImage")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("itemName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<double>("weight")
-                        .HasColumnType("float");
-
-                    b.HasKey("itemID");
-
-                    b.ToTable("Item");
                 });
 
             modelBuilder.Entity("RazorPagesMovie.Models.ApplicationRole", b =>
@@ -275,8 +248,14 @@ namespace RazorPagesMovie.Migrations
                     b.Property<DateTime>("DateTimeStamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("KeyMovieFieldID")
+                    b.Property<int>("KeyListingFieldListingID")
                         .HasColumnType("int");
+
+                    b.Property<string>("PortalArea")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserRole")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
@@ -286,34 +265,40 @@ namespace RazorPagesMovie.Migrations
                     b.ToTable("AuditRecords");
                 });
 
-            modelBuilder.Entity("RazorPagesMovie.Models.Customer", b =>
+            modelBuilder.Entity("RazorPagesMovie.Models.Listing", b =>
                 {
-                    b.Property<int>("CustomerID")
+                    b.Property<int>("listingID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Address")
+                    b.Property<string>("colour")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Comment")
+                    b.Property<string>("content")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("imageName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("itemName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNum")
+                    b.Property<string>("itemType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("CustomerID");
+                    b.Property<decimal>("price")
+                        .HasColumnType("decimal(18, 2)");
 
-                    b.ToTable("Customers");
+                    b.Property<double>("weight")
+                        .HasColumnType("float");
+
+                    b.HasKey("listingID");
+
+                    b.ToTable("Listings");
                 });
 
             modelBuilder.Entity("RazorPagesMovie.Models.Movie", b =>

@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace RazorPagesMovie.Migrations
 {
@@ -14,14 +14,17 @@ namespace RazorPagesMovie.Migrations
                     Audit_ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AuditActionType = table.Column<string>(nullable: true),
-                    Username = table.Column<string>(nullable: true),
+                    Username = table.Column<DateTime>(nullable: false),
+                    KeyListingFieldListingID = table.Column<int>(nullable: false),
                     DateTimeStamp = table.Column<DateTime>(nullable: false),
-                    KeyMovieFieldID = table.Column<int>(nullable: false)
+                    UserRole = table.Column<string>(nullable: false),
+                    PortalArea = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AuditRecords", x => x.Audit_ID);
                 });
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -31,3 +34,4 @@ namespace RazorPagesMovie.Migrations
         }
     }
 }
+

@@ -23,7 +23,13 @@
                 @Html.DisplayNameFor(model => model.AuditRecord[0].DateTimeStamp)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AuditRecord[0].KeyMovieFieldID)
+                @Html.DisplayNameFor(model => model.AuditRecord[0].KeyListingFieldListingID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuditRecord[0].UserRole)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuditRecord[0].PortalArea)
             </th>
             <th></th>
         </tr>
@@ -41,7 +47,13 @@
                 @Html.DisplayFor(modelItem => item.DateTimeStamp)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.KeyMovieFieldID)
+                @Html.DisplayFor(modelItem => item.KeyListingFieldListingID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserRole)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PortalArea)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Audit_ID">Edit</a> |

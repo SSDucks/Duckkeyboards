@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -52,8 +53,35 @@ namespace RazorPagesMovie.Pages.Listings
                 Listing.content = ProcessUploadedFile();
             }
 
+
+
             _context.Listings.Add(Listing);
             await _context.SaveChangesAsync();
+            ////await _context.SaveChangesAsync();
+            //// Created audit log when listing is created
+            //if (await _context.SaveChangesAsync() > 0)
+            //{
+            //    // create auditrecord object
+            //    var auditrecord = new AuditRecord();
+            //    auditrecord.AuditActionType = "Add Listing Record";
+            //    auditrecord.DateTimeStamp = DateTime.Now;
+            //    auditrecord.KeyListingFieldListingID = Listing.listingID;
+            //    // Get current logged-in user
+            //    var userId = User.Identity.Name.ToString();
+            //    auditrecord.Username = userId;
+            //    auditrecord.PortalArea = "Create Listings Page";
+            //    //var userRole = ((ClaimsIdentity)User.Identity).Claims
+            //    //    .Where(c => c.Type == ClaimTypes.Role)
+            //    //    .Select(c => c.Value).ToList();
+            //    auditrecord.UserRole = "aa";
+
+            //    _context.AuditRecords.Add(auditrecord);
+            //    await _context.SaveChangesAsync();
+
+            //    _context.Listings.Add(Listing);
+            //    await _context.SaveChangesAsync();
+
+            //}
             return RedirectToPage("./Index");
         }
         private string ProcessUploadedFile()
