@@ -20,7 +20,6 @@ namespace RazorPagesMovie.Models
         [Required]
         public string imageName { get; set; }
         public string itemType { get; set; }
-        [Required]
         public string content { get; set; }
 
         public Listing() { }

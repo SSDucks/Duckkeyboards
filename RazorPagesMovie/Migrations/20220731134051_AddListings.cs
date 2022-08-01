@@ -18,7 +18,7 @@ namespace RazorPagesMovie.Migrations
                     colour = table.Column<string>(nullable: true),
                     imageName = table.Column<string>(nullable: false),
                     itemType = table.Column<string>(nullable: true),
-                    content = table.Column<string>(nullable: false)
+                    content = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
