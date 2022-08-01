@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using RazorPagesMovie;
 using RazorPagesMovie.Data;
-using RazorPagesMovie.Models;
 
-namespace RazorPagesMovie.Pages.Movies
+namespace RazorPagesMovie.Pages.Items
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace RazorPagesMovie.Pages.Movies
         }
 
         [BindProperty]
-        public Movie Movie { get; set; }
+        public Item Item { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -36,25 +36,10 @@ namespace RazorPagesMovie.Pages.Movies
                 return Page();
             }
 
-            _context.Movie.Add(Movie);
-            //await _context.SaveChangesAsync();
-            // Once a record is added, create an audit record
-            if (await _context.SaveChangesAsync() > 0)
-            {
-                // Create an auditrecord object
-                var auditrecord = new AuditRecord();
-                auditrecord.AuditActionType = "Add Movie Record";
-                auditrecord.DateTimeStamp = DateTime.Now;
-                auditrecord.KeyMovieFieldID = Movie.ID;
-                // Get current logged-in user
-                var userID = User.Identity.Name.ToString();
-                auditrecord.Username = userID;
-                _context.AuditRecords.Add(auditrecord);
-                await _context.SaveChangesAsync();
+            //var file = Path
+            _context.Item.Add(Item);
+            await _context.SaveChangesAsync();
 
-                _context.Movie.Add(Movie);
-                await _context.SaveChangesAsync();
-            }
             return RedirectToPage("./Index");
         }
     }

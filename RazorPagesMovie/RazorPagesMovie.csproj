@@ -7,30 +7,6 @@
   <ItemGroup>
     <Compile Remove="Migrations\20220731134022_AddListings.cs" />
     <Compile Remove="Migrations\20220731134022_AddListings.Designer.cs" />
-    <Compile Remove="Migrations\20220801012934_AddAudit.cs" />
-    <Compile Remove="Migrations\20220801012934_AddAudit.Designer.cs" />
-    <Compile Remove="Migrations\20220801013110_AddAudit.cs" />
-    <Compile Remove="Migrations\20220801013110_AddAudit.Designer.cs" />
-    <Compile Remove="Migrations\20220801013617_AddAudit.cs" />
-    <Compile Remove="Migrations\20220801013617_AddAudit.Designer.cs" />
-    <Compile Remove="Migrations\20220801014051_AddAudit.cs" />
-    <Compile Remove="Migrations\20220801014051_AddAudit.Designer.cs" />
-    <Compile Remove="Migrations\20220801014642_AddAudit.cs" />
-    <Compile Remove="Migrations\20220801014642_AddAudit.Designer.cs" />
-    <Compile Remove="Migrations\20220801014756_AddAudit.cs" />
-    <Compile Remove="Migrations\20220801014756_AddAudit.Designer.cs" />
-    <Compile Remove="Migrations\20220801014808_AddAuditRecord.cs" />
-    <Compile Remove="Migrations\20220801014808_AddAuditRecord.Designer.cs" />
-    <Compile Remove="Migrations\20220801015632_AddAuditRecord.cs" />
-    <Compile Remove="Migrations\20220801015632_AddAuditRecord.Designer.cs" />
-    <Compile Remove="Migrations\20220801015652_AddAuditRecord.cs" />
-    <Compile Remove="Migrations\20220801015652_AddAuditRecord.Designer.cs" />
-    <Compile Remove="Migrations\20220801015742_AddAudit.cs" />
-    <Compile Remove="Migrations\20220801015742_AddAudit.Designer.cs" />
-    <Compile Remove="Migrations\20220801015805_AddAudit.cs" />
-    <Compile Remove="Migrations\20220801015805_AddAudit.Designer.cs" />
-    <Compile Remove="Migrations\20220801020242_AddAudit.cs" />
-    <Compile Remove="Migrations\20220801020242_AddAudit.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="NewFolder\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

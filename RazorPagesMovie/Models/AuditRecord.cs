@@ -20,12 +20,8 @@ namespace RazorPagesMovie.Models
         [DataType(DataType.DateTime)]
         public DateTime DateTimeStamp { get; set; }
         //Time when the event occurred
-        [Display(Name = "Listing Record ID")]
-        public int KeyListingFieldListingID { get; set; }
+        [Display(Name = "Movie Record ID ")]
+        public int KeyMovieFieldID { get; set; }
         //Store the ID of movie record that is affected
-        [Display(Name = "User Role")]
-        public string UserRole { get; set; }
-        [Display(Name = "Portal")]
-        public string PortalArea { get; set; }
     }
 }
