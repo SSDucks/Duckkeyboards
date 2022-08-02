@@ -13,11 +13,24 @@ namespace RazorPagesMovie.Data
 {
     public class RazorPagesMovieContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
+        private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         public RazorPagesMovieContext (DbContextOptions<RazorPagesMovieContext> options)
-            : base(options)
+            :base (options)
         {
-        }
 
+        }
+        //public RazorPagesMovieContext (DbContextOptions<RazorPagesMovieContext> options,
+        //    RazorPagesMovie.Data.RazorPagesMovieContext context, UserManager<ApplicationUser> userManager,
+        //    RoleManager<ApplicationRole> roleManager)
+        //    : base(options)
+        //{
+        //    _context = context;
+        //    _userManager = userManager;
+        //    _roleManager = roleManager;
+        //}
+        // IF THINGS BREAK REMOVE ASYNC
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -49,7 +62,23 @@ namespace RazorPagesMovie.Data
                     NormalizedName = "SHOPKEEPER",
                 },
             });
+            var hasher = new PasswordHasher<ApplicationUser>();
+            builder.Entity<ApplicationUser>().HasData(new List<ApplicationUser>
+            {
+                new ApplicationUser{
+                    Id = "1",
+                    UserName = "admin@admin.com",
+                    Email = "admin@admin.com",
+                    NormalizedUserName = "ADMIN@ADMIN.COM",
+                    NormalizedEmail = "ADMIN@ADMIN.COM",
+                    EmailConfirmed = false,
+                    PasswordHash = hasher.HashPassword(null, "admin1")
+                },
+
+            });
         }
+
+
 
         public DbSet<RazorPagesMovie.Models.Movie> Movie { get; set; }
         public DbSet<RazorPagesMovie.Models.Customer> Customers { get; set; }
