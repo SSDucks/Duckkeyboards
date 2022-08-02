@@ -29,14 +29,19 @@
                         <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-page="/Listings/Index">Store</a>
                         </li>
-                        @if(@User.IsInRole("Admin")){
+                        @if(@User.IsInRole("Shopkeeper")){
                             <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Listings/Create">Add Items</a>
                             </li>
                         }                        
-                        @if(@User.IsInRole("Admin")){
+                        @if(@User.IsInRole("Auditor")){
                             <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Audit/Index">Check Audit Logs</a>
+                            </li>
+                        }
+                        @if(@User.IsInRole("Role Administrator")){
+                            <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Roles/Manage">Manage Roles</a>
                             </li>
                         }
                     </ul>

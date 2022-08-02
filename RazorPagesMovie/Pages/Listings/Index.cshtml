@@ -84,7 +84,9 @@
                 }
                 @if (!User.IsInRole("Shopkeeper"))
                 {
+                    <td>
                     <a asp-page="./Details" asp-route-id="@item.listingID">Details</a>
+                    </td>
                 }
         </tr>
 }
