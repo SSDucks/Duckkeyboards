@@ -12,7 +12,7 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Audit
 {
-    [Authorize(Roles = "Auditor")]
+    [Authorize(Roles = "")]
     public class EditModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;

@@ -11,7 +11,7 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Audit
 {
-    [Authorize(Roles = "Auditor")]
+    [Authorize(Roles = "")]
     public class DeleteModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;

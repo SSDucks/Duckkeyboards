@@ -39,7 +39,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Audit/Index">Check Audit Logs</a>
                             </li>
                         }
-                        @if(@User.IsInRole("Role Administrator")){
+                        @if(@User.IsInRole("RoleAdministrator")){
                             <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Roles/Manage">Manage Roles</a>
                             </li>
