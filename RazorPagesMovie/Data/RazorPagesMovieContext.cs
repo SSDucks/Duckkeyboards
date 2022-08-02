@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using RazorPagesMovie;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.VisualStudio.Services.UserAccountMapping;
 
 namespace RazorPagesMovie.Data
 {
@@ -22,6 +24,31 @@ namespace RazorPagesMovie.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
+
+            builder.Entity<ApplicationRole>().HasData(new List<ApplicationRole>
+            {
+                new ApplicationRole{
+                    Id = "1",
+                    Name = "Auditor",
+                    CreatedDate = DateTime.Now,
+                    Description = "(CRUD) access to audits",
+                    NormalizedName = "AUDITOR",
+                },
+                new ApplicationRole{
+                    Id = "2",
+                    Name = "Role Administrator",
+                    CreatedDate = DateTime.Now,
+                    Description = "(CRUD) assignment of roles to users and groups",
+                    NormalizedName = "ROLE ADMINISTRATOR",
+                },
+                new ApplicationRole{
+                    Id = "3",
+                    Name = "Shopkeeper",
+                    CreatedDate = DateTime.Now,
+                    Description = "(CRUD) Managers items/products",
+                    NormalizedName = "SHOPKEEPER",
+                },
+            });
         }
 
         public DbSet<RazorPagesMovie.Models.Movie> Movie { get; set; }

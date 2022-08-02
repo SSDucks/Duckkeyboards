@@ -50,7 +50,22 @@ namespace RazorPagesMovie.Pages.Listings
             if (Listing != null)
             {
                 _context.Listings.Remove(Listing);
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync();
+
+                // Once a record is deleted, create an audit record
+                if (await _context.SaveChangesAsync() > 0)
+                {
+                    // create an auditrecord object
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Delete Listing Record";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+                    auditrecord.KeyMovieFieldID = Listing.listingID;
+                    // Get current Logged in user
+                    var userID = User.Identity.Name.ToString();
+                    auditrecord.Username = userID;
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
+                }
             }
 
             return RedirectToPage("./Index");

@@ -30,6 +30,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Services.Client" Version="16.170.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="React.AspNet" Version="5.2.12" />
@@ -37,7 +38,6 @@
 
   <ItemGroup>
     <Folder Include="NewFolder\" />
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>

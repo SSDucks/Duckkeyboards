@@ -48,12 +48,26 @@ namespace RazorPagesMovie.Pages.Listings
 
             if (Photo != null)
             {
-                System.Diagnostics.Debug.WriteLine("BBBB" + ProcessUploadedFile());
                 Listing.content = ProcessUploadedFile();
             }
 
             _context.Listings.Add(Listing);
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
+
+            // Once a record is addedm create an audit record
+            if(await _context.SaveChangesAsync() > 0)
+            {
+                // create an auditrecord object
+                var auditrecord = new AuditRecord();
+                auditrecord.AuditActionType = "Create listing object";
+                auditrecord.DateTimeStamp = DateTime.Now;
+                auditrecord.KeyMovieFieldID = Listing.listingID;
+                // Get current Logged in user
+                var userID = User.Identity.Name.ToString();
+                auditrecord.Username = userID;
+                _context.AuditRecords.Add(auditrecord);
+                await _context.SaveChangesAsync();
+            }
             return RedirectToPage("./Index");
         }
         private string ProcessUploadedFile()

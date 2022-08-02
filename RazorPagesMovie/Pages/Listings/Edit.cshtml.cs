@@ -75,11 +75,26 @@ namespace RazorPagesMovie.Pages.Listings
                         System.IO.File.Delete(filePath);
                     }
                     
-                    System.Diagnostics.Debug.WriteLine("BBBB" + ProcessUploadedFile());
+                    System.Diagnostics.Debug.WriteLine("images uploaded: " + ProcessUploadedFile());
                     Listing.content = ProcessUploadedFile();
                 }
 
-                await _context.SaveChangesAsync();
+                // Once a record is editted, create an audit record
+                if (await _context.SaveChangesAsync() > 0)
+                {
+                    // create an auditrecord object
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Edit listing object";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+                    auditrecord.KeyMovieFieldID = Listing.listingID;
+                    // Get current Logged in user
+                    var userID = User.Identity.Name.ToString();
+                    auditrecord.Username = userID;
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
+                }
+
+                //await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {

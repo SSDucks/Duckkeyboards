@@ -19,6 +19,33 @@ namespace RazorPagesMovie.Models
                 {
                     return;   // DB has been seeded
                 }
+                if (context.Listings.Any())
+                {
+                    return;
+                }
+                context.Listings.AddRange(
+                    new Listing
+                    {
+                        itemName = "White keyboard",
+                        weight = 2.5,
+                        price = 120,
+                        colour = "white",
+                        imageName = "whiteKeyboard",
+                        itemType = "Keyboard",
+                        content = "8828ed40-7ce8-41a3-b954-510bc36defa2.jpg"
+                    },
+
+                    new Listing
+                    {
+                        itemName = "Black keyboard",
+                        weight = 3.5,
+                        price = 140,
+                        colour = "black",
+                        imageName = "blackKeyboard",
+                        itemType = "Keyboard",
+                        content = "8828ed40-7ce8-41a3-b954-510bc36defa2.jpg"
+                    }
+                    );
 
                 context.Movie.AddRange(
                     new Movie
@@ -56,10 +83,6 @@ namespace RazorPagesMovie.Models
                 context.SaveChanges();
 
 
-                // Add own items here reference from movies above
-                context.Item.AddRange(
-
-                    );
             }
         }
     }

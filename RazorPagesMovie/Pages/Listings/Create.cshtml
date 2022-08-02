@@ -40,9 +40,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Listing.itemType" class="control-label"></label>
-                <input asp-for="Listing.itemType" class="form-control" />
+                <select asp-for="Listing.itemType" class="form-control" />
+                <option value="keyboard">Keyboard</option>
+                <option value="keycap">Key Cap</option>
+                <option value="switch">Switch</option>
                 <span asp-validation-for="Listing.itemType" class="text-danger"></span>
             </div>
+            <br />
             @*<div class="form-group">
                 <label asp-for="Listing.content" class="control-label"></label>
                 <input asp-for="Listing.content" class="form-control" />
