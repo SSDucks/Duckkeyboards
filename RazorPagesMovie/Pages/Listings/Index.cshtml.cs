@@ -14,7 +14,6 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Listings
 {
-    [Authorize(Roles = "Shopkeeper")]
     public class IndexModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
