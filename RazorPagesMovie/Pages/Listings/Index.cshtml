@@ -9,9 +9,12 @@
 
 <h1>Index</h1>
 
+@if (User.IsInRole("Shopkeeper"))
+{ 
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -64,18 +67,25 @@
             <td>
                 <img src="
                 @Html.DisplayFor(modelItem => path)
-                " style="height: 200px;">
+                " style="height: 200px; width:200px;">
             </td>
             <td>
                 <button type="button" class="button-38" onclick="buyButton()">
                     Buy
                 </button>
             </td>
-            <td>
+                @if (User.IsInRole("Shopkeeper"))
+                {
+                <td>
                 <a asp-page="./Edit" asp-route-id="@item.listingID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.listingID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.listingID">Delete</a>
-            </td>
+                <a asp-page="./Delete" asp-route-id="@item.listingID">Delete</a>    
+                </td>
+                }
+                @if (!User.IsInRole("Shopkeeper"))
+                {
+                    <a asp-page="./Details" asp-route-id="@item.listingID">Details</a>
+                }
         </tr>
 }
     </tbody>

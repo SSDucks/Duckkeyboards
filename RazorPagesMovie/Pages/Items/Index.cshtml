@@ -52,9 +52,15 @@
                 @Html.DisplayFor(modelItem => item.itemImage)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.itemID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.itemID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.itemID">Delete</a>
+                    @if (User.IsInRole("Shopkeeper"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.itemID">Edit</a>
+                    }
+                    <a asp-page="./Details" asp-route-id="@item.itemID">Details</a>
+                @if(User.IsInRole("Shopkeeper"))
+                {
+                    <a asp-page="./Delete" asp-route-id="@item.itemID">Delete</a>
+                }
             </td>
         </tr>
 }

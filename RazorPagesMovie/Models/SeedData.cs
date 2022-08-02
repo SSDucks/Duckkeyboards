@@ -43,7 +43,7 @@ namespace RazorPagesMovie.Models
                         colour = "black",
                         imageName = "blackKeyboard",
                         itemType = "Keyboard",
-                        content = "8828ed40-7ce8-41a3-b954-510bc36defa2.jpg"
+                        content = "1c2b2438-cd6a-46db-9dd4-d8c68183d4b6.jpg"
                     }
                     );
 
