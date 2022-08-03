@@ -36,28 +36,28 @@ namespace RazorPagesMovie.Pages.Listings
         public IFormFile Photo { get; set; }
 
         [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Entered Text contain Invalid characters")]
-        public string searchString { get; set; }
+        public string newSearch { get; set; }
         [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Entered Text contain Invalid characters")]
         public string searchStringType { get; set; }
 
-        public async Task OnGetAsync(string searchString, string searchStringType)
+        public async Task OnGetAsync(string newSearch, string searchStringType)
         {
-            var listings = from m in _context.Listings
-                         select m;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                listings = listings.Where(s => s.itemName.Contains(searchString));
-            }
-
-            Listing = await listings.ToListAsync();
-
             var listingtype = from t in _context.Listings
                          select t;
 
             if (!String.IsNullOrEmpty(searchStringType))
             {
                 listingtype = listingtype.Where(s => s.itemType.Contains(searchStringType));
+            }
+
+            Listing = await listingtype.ToListAsync();
+
+            var listingname = from t in _context.Listings
+                              select t;
+
+            if (!String.IsNullOrEmpty(newSearch))
+            {
+                listingtype = listingtype.Where(s => s.itemName.Contains(newSearch));
             }
 
             Listing = await listingtype.ToListAsync();
