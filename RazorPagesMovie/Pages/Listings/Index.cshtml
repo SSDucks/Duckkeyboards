@@ -55,26 +55,28 @@
         </tr>
     </thead>
     <tbody>
+
+        @*@item encodes output. Changes < to &lt*@
 @foreach (var item in Model.Listing) {
             var path = Url.Content("~/images/" + item.content);
             <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.itemName)
+                @item.itemName
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.weight)kg
+                @item.weight kg
             </td>
             <td>
-                $@Html.DisplayFor(modelItem => item.price)
+                $@item.price
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.colour)
+                @item.colour
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.imageName)
+                @item.imageName
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.itemType)
+                @item.itemType
             </td>
             <td>
                 <img src="
