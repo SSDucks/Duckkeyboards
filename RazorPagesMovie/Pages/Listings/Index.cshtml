@@ -9,10 +9,6 @@
 
 <h1>Index</h1>
 
-@if(TempData["message"] != null){
-    <p><font color="red">@TempData["message"]</font></p>
-}
-
 @if (User.IsInRole("Shopkeeper"))
 { 
 <p>
@@ -22,7 +18,7 @@
 
 <form asp-controller="Listings" asp-action="Index">
     <p>
-        Item Name: <input type="text" name="SearchString">
+        Item Name: <input type="text" name="NewSearch">
         <input type="submit" value="Filter"/>
     </p>
 </form>
@@ -55,42 +51,37 @@
         </tr>
     </thead>
     <tbody>
-
-        @*@item encodes output. Changes < to &lt*@
 @foreach (var item in Model.Listing) {
             var path = Url.Content("~/images/" + item.content);
             <tr>
             <td>
-                @item.itemName
+                @Html.DisplayFor(modelItem => item.itemName)
             </td>
             <td>
-                @item.weight kg
+                @Html.DisplayFor(modelItem => item.weight)kg
             </td>
             <td>
-                $@item.price
+                $@Html.DisplayFor(modelItem => item.price)
             </td>
             <td>
-                @item.colour
+                @Html.DisplayFor(modelItem => item.colour)
             </td>
             <td>
-                @item.imageName
+                @Html.DisplayFor(modelItem => item.imageName)
             </td>
             <td>
-                @item.itemType
+                @Html.DisplayFor(modelItem => item.itemType)
             </td>
             <td>
                 <img src="
                 @Html.DisplayFor(modelItem => path)
                 " style="height: 200px; width:200px;">
             </td>
-            @if (!User.IsInRole("Shopkeeper"))
-                {
-                    <td>
-                    <button type="button" class="button-38" onclick="buyButton()">
-                        Buy
-                    </button>
-                </td>
-                }
+            <td>
+                <button type="button" class="button-38" onclick="buyButton()">
+                    Buy
+                </button>
+            </td>
                 @if (User.IsInRole("Shopkeeper"))
                 {
                 <td>

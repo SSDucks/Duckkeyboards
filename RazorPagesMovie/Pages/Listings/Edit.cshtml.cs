@@ -69,23 +69,16 @@ namespace RazorPagesMovie.Pages.Listings
                     // If there is an existing photo, it needs to be deleted
                     // before uploading the new one, so check if there is
                     // an existing photo
-                    if (IsImage(Photo))
+                    if (Listing.content != null)
                     {
-                        if (Listing.content != null)
-                        {
-                            string filePath = Path.Combine(webHostEnvironment.WebRootPath,
-                                "images", Listing.content);
-                            System.Diagnostics.Debug.WriteLine(filePath);
-                            System.IO.File.Delete(filePath);
-                        }
-                        Listing.content = ProcessUploadedFile();
-                        _context.Listings.Add(Listing);
+                        string filePath = Path.Combine(webHostEnvironment.WebRootPath,
+                            "images", Listing.content);
+                        System.Diagnostics.Debug.WriteLine(filePath);
+                        System.IO.File.Delete(filePath);
                     }
-                    else
-                    {
-                        TempData["message"] = "Please upload a valid file type";
-                        return RedirectToPage("Index");
-                    }
+                    
+                    System.Diagnostics.Debug.WriteLine("images uploaded: " + ProcessUploadedFile());
+                    Listing.content = ProcessUploadedFile();
                 }
 
                 // Once a record is editted, create an audit record
@@ -143,33 +136,6 @@ namespace RazorPagesMovie.Pages.Listings
                 }
             }
             return uniqueFileName;
-        }
-        private bool IsImage(IFormFile Photo)
-        {
-            //-------------------------------------------
-            //  Check the image mime types
-            //-------------------------------------------
-            if (!string.Equals(Photo.ContentType, "image/jpg", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Photo.ContentType, "image/jpeg", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Photo.ContentType, "image/png", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Photo.ContentType, "image/jfif", StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-
-            //-------------------------------------------
-            //  Check the image extension
-            //-------------------------------------------
-            var postedFileExtension = Path.GetExtension(Photo.FileName);
-            if (!string.Equals(postedFileExtension, ".jpg", StringComparison.OrdinalIgnoreCase)
-                && !string.Equals(postedFileExtension, ".png", StringComparison.OrdinalIgnoreCase)
-                && !string.Equals(postedFileExtension, ".jpeg", StringComparison.OrdinalIgnoreCase)
-                && !string.Equals(postedFileExtension, ".jfif", StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 }

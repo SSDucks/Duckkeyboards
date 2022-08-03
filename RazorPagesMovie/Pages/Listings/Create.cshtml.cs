@@ -50,18 +50,10 @@ namespace RazorPagesMovie.Pages.Listings
 
             if (Photo != null)
             {
-                if (IsImage(Photo))
-                {
-                    Listing.content = ProcessUploadedFile();
-                    _context.Listings.Add(Listing);
-                }
-                else
-                {
-                    TempData["message"] = "Please upload a valid file type";
-                    return RedirectToPage("Create");
-                }
+                Listing.content = ProcessUploadedFile();
             }
 
+            _context.Listings.Add(Listing);
             //await _context.SaveChangesAsync();
 
             // Once a record is addedm create an audit record
@@ -98,34 +90,6 @@ namespace RazorPagesMovie.Pages.Listings
                 }
             }
             return uniqueFileName;
-        }
-
-        private bool IsImage(IFormFile Photo)
-        {
-            //-------------------------------------------
-            //  Check the image mime types
-            //-------------------------------------------
-            if (!string.Equals(Photo.ContentType, "image/jpg", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Photo.ContentType, "image/jpeg", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Photo.ContentType, "image/png", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Photo.ContentType, "image/jfif", StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-
-            //-------------------------------------------
-            //  Check the image extension
-            //-------------------------------------------
-            var postedFileExtension = Path.GetExtension(Photo.FileName);
-            if (!string.Equals(postedFileExtension, ".jpg", StringComparison.OrdinalIgnoreCase)
-                && !string.Equals(postedFileExtension, ".png", StringComparison.OrdinalIgnoreCase)
-                && !string.Equals(postedFileExtension, ".jpeg", StringComparison.OrdinalIgnoreCase)
-                && !string.Equals(postedFileExtension, ".jfif", StringComparison.OrdinalIgnoreCase))
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 
