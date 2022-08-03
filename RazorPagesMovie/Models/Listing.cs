@@ -13,13 +13,20 @@ namespace RazorPagesMovie.Models
 
         public int listingID { get; set; }
         [Required]
+        [Display(Name = "Item Name")]
         public string itemName { get; set; }
+        [Display(Name = "Weight")]
+        [RegularExpression("^([0-9]+([.][0-9]*)?|[.][0-9]+)$", ErrorMessage = "Please enter valid positive number.")]
         public double weight { get; set; }
-        [Column(TypeName = "decimal(18, 2)")]
+        [RegularExpression("^([0-9]+([.][0-9]*)?|[.][0-9]+)$", ErrorMessage = "Please enter valid positive number.")]
+        [Display(Name = "Price")]
         public double price { get; set; }
+        [Display(Name = "Colour")]
         public string colour { get; set; }
         [Required]
+        [Display(Name = "Image Name")]
         public string imageName { get; set; }
+        [Display(Name = "Item Type")]
         public string itemType { get; set; }
         //[ErrorMessage = "Please enter a valid image"]
         public string content { get; set; }
