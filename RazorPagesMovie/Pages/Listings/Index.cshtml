@@ -9,6 +9,10 @@
 
 <h1>Index</h1>
 
+@if(TempData["message"] != null){
+    <p><font color="red">@TempData["message"]</font></p>
+}
+
 @if (User.IsInRole("Shopkeeper"))
 { 
 <p>
@@ -77,11 +81,14 @@
                 @Html.DisplayFor(modelItem => path)
                 " style="height: 200px; width:200px;">
             </td>
-            <td>
-                <button type="button" class="button-38" onclick="buyButton()">
-                    Buy
-                </button>
-            </td>
+            @if (!User.IsInRole("Shopkeeper"))
+                {
+                    <td>
+                    <button type="button" class="button-38" onclick="buyButton()">
+                        Buy
+                    </button>
+                </td>
+                }
                 @if (User.IsInRole("Shopkeeper"))
                 {
                 <td>
