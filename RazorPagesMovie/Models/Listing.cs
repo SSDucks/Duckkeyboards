@@ -10,7 +10,6 @@ namespace RazorPagesMovie.Models
 {
     public class Listing
     {
-
         public int listingID { get; set; }
         [Required]
         public string itemName { get; set; }
@@ -21,7 +20,6 @@ namespace RazorPagesMovie.Models
         [Required]
         public string imageName { get; set; }
         public string itemType { get; set; }
-        //[ErrorMessage = "Please enter a valid image"]
         public string content { get; set; }
 
         public Listing() { }
