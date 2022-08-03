@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace RazorPagesMovie.Pages.Listings
 {
@@ -32,6 +34,11 @@ namespace RazorPagesMovie.Pages.Listings
 
         [BindProperty]
         public IFormFile Photo { get; set; }
+
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Entered Text contain Invalid characters")]
+        public string searchString { get; set; }
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Entered Text contain Invalid characters")]
+        public string searchStringType { get; set; }
 
         public async Task OnGetAsync(string searchString, string searchStringType)
         {

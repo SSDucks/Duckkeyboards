@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie;
 using RazorPagesMovie.Data;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace RazorPagesMovie.Pages.Items
 {
