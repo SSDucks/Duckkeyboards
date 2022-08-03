@@ -26,15 +26,34 @@ namespace RazorPagesMovie.Pages.Listings
             _context = context;
             this.webHostEnvironment = web;
         }
+        //public string i { get; set; }
 
         public IList<Listing> Listing { get;set; }
 
         [BindProperty]
         public IFormFile Photo { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string searchString, string searchStringType)
         {
-            Listing = await _context.Listings.ToListAsync();
+            var listings = from m in _context.Listings
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                listings = listings.Where(s => s.itemName.Contains(searchString));
+            }
+
+            Listing = await listings.ToListAsync();
+
+            var listingtype = from t in _context.Listings
+                         select t;
+
+            if (!String.IsNullOrEmpty(searchStringType))
+            {
+                listingtype = listingtype.Where(s => s.itemType.Contains(searchStringType));
+            }
+
+            Listing = await listingtype.ToListAsync();
         }
 
 
