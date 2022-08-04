@@ -62,7 +62,10 @@ namespace RazorPagesMovie.Pages.Listings
             }
             else
             {
-                TempData["message"] = "Invalid input";
+                if (!String.IsNullOrEmpty(newSearch))
+                {
+                    TempData["message"] = "Invalid input";
+                }
             }
 
             Listing = await listingtype.ToListAsync();
