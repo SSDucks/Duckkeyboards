@@ -11,7 +11,7 @@ using RazorPagesMovie.Models;
 
 namespace RazorPagesMovie.Pages.Audit
 {
-    [Authorize(Roles = "")]
+    [Authorize(Roles = "NOT AUTHORISED")]
     public class CreateModel : PageModel
     {
         private readonly RazorPagesMovie.Data.RazorPagesMovieContext _context;
