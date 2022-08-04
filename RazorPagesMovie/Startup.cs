@@ -53,11 +53,11 @@ namespace RazorPagesMovie
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
-                options.Password.RequireDigit = false;
+                options.Password.RequireDigit = true;
                 options.Password.RequiredLength = 5;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
                 options.Password.RequiredUniqueChars = 1;
                 // Lockout settings
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
@@ -78,18 +78,31 @@ namespace RazorPagesMovie
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
-                options.Password.RequireDigit = false;
+                options.Password.RequireDigit = true;
                 options.Password.RequiredLength = 5;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
                 options.Password.RequiredUniqueChars = 1;
                 // Lockout settings
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.MaxFailedAccessAttempts = 10;
                 options.Lockout.AllowedForNewUsers = true;
                 // User settings
                 options.User.RequireUniqueEmail = true;
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // options.Cookie.Name = "YourCookieName";
+                // options.Cookie.Domain=
+                // options.LoginPath = "/Account/Login";
+                // options.LogoutPath = "/Account/Logout";
+                // options.AccessDeniedPath = "/Account/AccessDenied";
+
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromSeconds(500);
+                options.SlidingExpiration = true;
             });
 
         }
