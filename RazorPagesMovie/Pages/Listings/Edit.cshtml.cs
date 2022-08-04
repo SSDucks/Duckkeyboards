@@ -71,6 +71,7 @@ namespace RazorPagesMovie.Pages.Listings
                     // an existing photo
                     if (IsImage(Photo))
                     {
+
                         if (Listing.content != null)
                         {
                             string filePath = Path.Combine(webHostEnvironment.WebRootPath,
@@ -78,8 +79,9 @@ namespace RazorPagesMovie.Pages.Listings
                             System.Diagnostics.Debug.WriteLine(filePath);
                             System.IO.File.Delete(filePath);
                         }
+
+                        System.Diagnostics.Debug.WriteLine("images uploaded: " + ProcessUploadedFile());
                         Listing.content = ProcessUploadedFile();
-                        _context.Listings.Add(Listing);
                     }
                     else
                     {
@@ -144,15 +146,15 @@ namespace RazorPagesMovie.Pages.Listings
             }
             return uniqueFileName;
         }
-        private bool IsImage(IFormFile Photo)
+        private bool IsImage(IFormFile PhotoFile)
         {
             //-------------------------------------------
             //  Check the image mime types
             //-------------------------------------------
-            if (!string.Equals(Photo.ContentType, "image/jpg", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Photo.ContentType, "image/jpeg", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Photo.ContentType, "image/png", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Photo.ContentType, "image/jfif", StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(PhotoFile.ContentType, "image/jpg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(PhotoFile.ContentType, "image/jpeg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(PhotoFile.ContentType, "image/png", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(PhotoFile.ContentType, "image/jfif", StringComparison.OrdinalIgnoreCase))
             {
                 return false;
             }
@@ -160,7 +162,7 @@ namespace RazorPagesMovie.Pages.Listings
             //-------------------------------------------
             //  Check the image extension
             //-------------------------------------------
-            var postedFileExtension = Path.GetExtension(Photo.FileName);
+            var postedFileExtension = Path.GetExtension(PhotoFile.FileName);
             if (!string.Equals(postedFileExtension, ".jpg", StringComparison.OrdinalIgnoreCase)
                 && !string.Equals(postedFileExtension, ".png", StringComparison.OrdinalIgnoreCase)
                 && !string.Equals(postedFileExtension, ".jpeg", StringComparison.OrdinalIgnoreCase)

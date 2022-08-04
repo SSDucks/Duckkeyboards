@@ -25,7 +25,7 @@ namespace RazorPagesMovie.Models
                 user.BirthDate = new DateTime(1960, 1, 1);
 
                 IdentityResult result = userManager.CreateAsync
-                (user, "P@ssword").Result;
+                (user, "P@ssword1").Result;
 
                 if (result.Succeeded)
                 {
@@ -44,7 +44,7 @@ namespace RazorPagesMovie.Models
                 user.BirthDate = new DateTime(1965, 1, 1);
 
                 IdentityResult result = userManager.CreateAsync
-                (user, "P@ssword").Result;
+                (user, "P@ssword1").Result;
 
                 if (result.Succeeded)
                 {
@@ -62,7 +62,7 @@ namespace RazorPagesMovie.Models
                 user.BirthDate = new DateTime(1965, 1, 1);
 
                 IdentityResult result = userManager.CreateAsync
-                (user, "P@ssword").Result;
+                (user, "P@ssword1").Result;
 
                 if (result.Succeeded)
                 {
@@ -80,8 +80,7 @@ namespace RazorPagesMovie.Models
                 user.BirthDate = new DateTime(1965, 1, 1);
 
                 IdentityResult result = userManager.CreateAsync
-                (user, "P@ssword").Result;
-
+                (user, "P@ssword1").Result;
                 if (result.Succeeded)
                 {
                     userManager.AddToRoleAsync(user,
