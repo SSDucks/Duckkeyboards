@@ -10,6 +10,7 @@ namespace RazorPagesMovie.Models
 {
     public class Listing
     {
+
         public int listingID { get; set; }
         [Required]
         [Display(Name = "Item Name")]
