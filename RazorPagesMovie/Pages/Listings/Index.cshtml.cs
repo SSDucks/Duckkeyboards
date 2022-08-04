@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using RazorPagesMovie.Data;
 using RazorPagesMovie.Models;
 using System.ComponentModel.DataAnnotations;
-
+using System.Text.RegularExpressions;
 
 namespace RazorPagesMovie.Pages.Listings
 {
@@ -52,15 +52,21 @@ namespace RazorPagesMovie.Pages.Listings
 
             Listing = await listingtype.ToListAsync();
 
-            var listingname = from t in _context.Listings
-                              select t;
+            var litty = from owo in _context.Listings
+                              select owo;
 
-            if (!String.IsNullOrEmpty(newSearch))
+
+            if (!String.IsNullOrEmpty(newSearch) && Regex.IsMatch(newSearch, @"^[a-zA-Z0-9]+$"))
             {
                 listingtype = listingtype.Where(s => s.itemName.Contains(newSearch));
             }
+            else
+            {
+                TempData["message"] = "Invalid input";
+            }
 
             Listing = await listingtype.ToListAsync();
+
         }
 
 

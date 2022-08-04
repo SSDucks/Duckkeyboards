@@ -21,10 +21,13 @@
 }
 
 <form>
+    <div class="form-group">
+    Search by Name: <input asp-for="newSearch" size="60" />
+    <input type="submit" value="Search" asp-page-handler="Test" />
     <p>
-        Item Name: <input type="text" name="NewSearch">
-        <input type="submit" value="Filter"/>
+        <span asp-validation-for="newSearch" class="text-danger"></span>
     </p>
+    </div>
 </form>
 
 <table class="table">
