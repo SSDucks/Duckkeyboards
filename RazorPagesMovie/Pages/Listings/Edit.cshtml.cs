@@ -66,11 +66,12 @@ namespace RazorPagesMovie.Pages.Listings
             {
                 if (Photo != null)
                 {
-                    // If there is an existing photo, it needs to be deleted
-                    // before uploading the new one, so check if there is
-                    // an existing photo
                     if (IsImage(Photo))
                     {
+
+                        // If there is an existing photo, it needs to be deleted
+                        // before uploading the new one, so check if there is
+                        // an existing photo
                         if (Listing.content != null)
                         {
                             string filePath = Path.Combine(webHostEnvironment.WebRootPath,
@@ -78,12 +79,13 @@ namespace RazorPagesMovie.Pages.Listings
                             System.Diagnostics.Debug.WriteLine(filePath);
                             System.IO.File.Delete(filePath);
                         }
+
+                        System.Diagnostics.Debug.WriteLine("images uploaded: " + ProcessUploadedFile());
                         Listing.content = ProcessUploadedFile();
-                        _context.Listings.Add(Listing);
                     }
                     else
                     {
-                        TempData["message"] = "Please upload a valid file type";
+                        TempData["message"] = "Please upload valid file type";
                         return RedirectToPage("Index");
                     }
                 }
@@ -144,15 +146,15 @@ namespace RazorPagesMovie.Pages.Listings
             }
             return uniqueFileName;
         }
-        private bool IsImage(IFormFile Photo)
+        private bool IsImage(IFormFile PhotoInput)
         {
             //-------------------------------------------
             //  Check the image mime types
             //-------------------------------------------
-            if (!string.Equals(Photo.ContentType, "image/jpg", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Photo.ContentType, "image/jpeg", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Photo.ContentType, "image/png", StringComparison.OrdinalIgnoreCase) &&
-                !string.Equals(Photo.ContentType, "image/jfif", StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(PhotoInput.ContentType, "image/jpg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(PhotoInput.ContentType, "image/jpeg", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(PhotoInput.ContentType, "image/png", StringComparison.OrdinalIgnoreCase) &&
+                !string.Equals(PhotoInput.ContentType, "image/jfif", StringComparison.OrdinalIgnoreCase))
             {
                 return false;
             }
@@ -160,7 +162,7 @@ namespace RazorPagesMovie.Pages.Listings
             //-------------------------------------------
             //  Check the image extension
             //-------------------------------------------
-            var postedFileExtension = Path.GetExtension(Photo.FileName);
+            var postedFileExtension = Path.GetExtension(PhotoInput.FileName);
             if (!string.Equals(postedFileExtension, ".jpg", StringComparison.OrdinalIgnoreCase)
                 && !string.Equals(postedFileExtension, ".png", StringComparison.OrdinalIgnoreCase)
                 && !string.Equals(postedFileExtension, ".jpeg", StringComparison.OrdinalIgnoreCase)
